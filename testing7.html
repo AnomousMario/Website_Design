@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario</title>
+    <style>
+        body {
+            overflow-x: hidden;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            position: relative;
+        }
+
+        .sliding-link {
+            display: inline-block;
+            width: 150px;
+            position: absolute;
+            /* Start completely hidden off the left edge */
+            left: 0; 
+            transform: translateX(-100%);
+            opacity: 0;
+            line-height: 0;
+            pointer-events: none; 
+            visibility: hidden; 
+        }
+
+        /* Combined and fixed single keyframe definition */
+        @keyframes slideAcross {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+                pointer-events: none;
+                visibility: hidden;
+            }
+            10% {
+                opacity: 1;
+                pointer-events: auto; /* Active clicks */
+                visibility: visible;
+            }
+            90% {
+                opacity: 1;
+                pointer-events: auto;
+                visibility: visible;
+            }
+            100% {
+                transform: translateX(100vw);
+                opacity: 0;
+                pointer-events: none;
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a id="mario-link" href="testing4.html" target="_blank" class="sliding-link">
+        <img src="https://www.pngall.com/wp-content/uploads/14/Mario-Kart-PNG-Image.png" alt="Mario Kart" style="width: 100%;">
+    </a>
+
+    <script>
+        const marioLink = document.getElementById('mario-link');
+        const animationDuration = 3000;
+
+        function spawnMario() {
+            const randomTop = Math.floor(Math.random() * 80);
+            marioLink.style.top = randomTop + 'vh';
+            
+            // Trigger animation
+            marioLink.style.animation = 'slideAcross 3s linear forwards';
+
+            setTimeout(() => {
+                marioLink.style.animation = 'none';
+                queueNextMario();
+            }, animationDuration);
+        }
+
+        function queueNextMario() {
+            const randomDelay = 2000 + Math.floor(Math.random() * 5000);
+            setTimeout(() => {
+                spawnMario();
+            }, randomDelay);
+        }
+
+        queueNextMario();
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mario</title>
+    <style>
+        /* Center the image on the screen */
+        body {
+            background-color: black;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Apply the animation to the image */
+        img {
+            width: 300px; /* Adjust size as needed */
+            animation: moveAndBob 4s ease-in-out infinite;
+        }
+
+        /* Define the movement paths */
+        @keyframes moveAndBob {
+            0% {
+                transform: translateX(-100px) translateY(0px);
+            }
+            25% {
+                transform: translateX(0px) translateY(-15px); /* Bob up */
+            }
+            50% {
+                transform: translateX(100px) translateY(0px); /* Move right */
+            }
+            75% {
+                transform: translateX(200px) translateY(-15px); /* Bob up */
+            }
+            100% {
+                transform: translateX(300px) translateY(0px); /* Move left */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://www.pngall.com/wp-content/uploads/14/Mario-Kart-PNG-Image.png" alt="Mario Kart">
+
+</body>
+</html>

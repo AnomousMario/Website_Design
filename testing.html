@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Mario</title>	
+			<style> /* CSS Class to center any object within website */
+				.center-flex{
+					display:flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+				}
+				body {
+				overflow-x: clip; /* Safer than hidden for modern rendering engines */
+				min-height: 100vh; /* Use min-height instead of strict height */
+				margin: 0;
+				background-color: black;
+				position: relative;
+				}
+
+		.sliding-link {
+		display: inline-block;
+		width: 150px;
+		position: absolute;
+		left: 0;
+		opacity: 0;
+		/* Removed visibility: hidden */
+		}
+
+		.sliding-link.animate {
+		animation: slideAcross 3s linear forwards;
+		}
+
+		@keyframes slideAcross {
+		0% {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		10% {
+			opacity: 1;
+		}
+		90% {
+			opacity: 1;
+		}
+		100% {
+			transform: translateX(100vw);
+			opacity: 0;
+		}
+		}
+	</style>
+		</head>
+		
+		<body style="background-color:black;
+		color:white">
+			<h1 style="text-align:center; font-size:50pt"> <!--heading 1-->
+				Mario
+			</h1>
+			<h2 style="text-align:center"> <!--heading 2-->
+				mario
+			</h2>
+			<h3 style="text-align:center"> <!--heading 3-->
+				mario
+			</h3>
+			<h4 style="text-align:center"> <!--heading 4-->
+				mario
+			</h4>
+			<p style="color:red; text-align:center"> <!-- paragraph with change color of text-->
+				<i> <!--italized text-->
+					mario mario mario mario
+				</i>
+				<b> <!--bold text-->
+					mario mario mario mario
+				</b>
+			</p>
+			<p style="text-align:center; font-size: 20pt; font-family:Calibri">
+				Super Mario is Super Cool
+			</p>
+			<div class="center-flex">
+				<a href="testing5.html" target="_blank">
+					<img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4xSoNiTL2rvEtqD88wWLsZ9lU3TuwpVMLYgVULysOlW8Uv4899H-K6r-PufocTiVIUrcy&s" width="500" height="500" alt="This is a Kellytoy Mario plush"title="It's-a me, Mario!" style="border-style:solid; border-color:red"> <!--image with size change and title-->
+				</a>
+				<br>
+				<a href="https://screenrant.com/mario-unreal-engine-5-terrifying-violent/" target="_blank">
+					<img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4xSoNiTL2rvEtqD88wWLsZ9lU3TuwpVMLYgVULysOlW8Uv4899H-K6r-PufocTiVIUrcy&s" width="500" height="500" alt="This is a Kellytoy Mario plush"title="!oiraM, em a-s'tI" style="filter:invert(100%); border-style:dotted; border-color:red">
+				</a>
+			</div>
+			<ul> <!--unorganized list-->
+				<li>mario</li>
+				<ol><li>mario<li>mario</li></ol> <!--organized list with unorganized list-->
+			</ul>
+			<a href="testing2.html" target="_blank">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Mario_emblem.svg/960px-Mario_emblem.svg.png" width="30" height="30">
+			</a>
+			
+			<a href="testing4.html" id="mario-link" class="sliding-link" target="_blank">
+				<img src="https://www.pngall.com/wp-content/uploads/14/Mario-Kart-PNG-Image.png" width="100" alt="Mario Kart">
+			</a>
+
+			<script>
+				const marioLink = document.getElementById('mario-link');
+				const animationDuration = 3000;
+
+				function spawnMario() {
+					const randomTop = Math.floor(Math.random() * 80);
+					marioLink.style.top = randomTop + 'vh';
+					marioLink.classList.add('animate'); // Add active class
+					
+					setTimeout(() => {
+						marioLink.classList.remove('animate'); // Remove class after run
+						queueNextMario();
+					}, animationDuration);
+				}
+
+				function queueNextMario() {
+					const randomDelay = 2000 + Math.floor(Math.random() * 5000);
+					setTimeout(() => {
+						spawnMario();
+					}, randomDelay);
+				}
+
+				queueNextMario();
+			</script>
+		</body>
+	</html>
+	
