@@ -30,11 +30,11 @@ class Sprite {
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
         // Draw attack box when attacking
-        //if (this.isAttacking) { 
+        if (this.isAttacking) { 
             c.fillStyle = 'green';
             c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
         } 
-    //} 
+    } 
 
     update() { 
         this.draw();
@@ -50,8 +50,13 @@ class Sprite {
             this.position.y = canvas.height - this.height; 
         } else { 
             this.velocity.y += gravity;
-        } 
-    } 
+        }
+		if (this.position.x + this.width + this.velocity.x >= canvas.width) {
+			this.velocity.x = 0;
+		}
+		
+		// Wall collision check
+	}
 
     attack() { 
         this.isAttacking = true;
@@ -62,13 +67,13 @@ class Sprite {
 } 
 
 const player = new Sprite({ 
-    position: { x: 0, y: 0 }, 
+    position: { x: 50, y: 100 }, 
     velocity: { x: 0, y: 0 }, 
     offset: { x: 0, y: 0 } 
 });
 
 const enemy = new Sprite({ 
-    position: { x: 400, y: 100 }, 
+    position: { x: 925, y: 100 }, 
     velocity: { x: 0, y: 0 }, 
     color: 'blue', 
     offset: { x: -50, y: 0 } 
@@ -80,6 +85,7 @@ const keys = {
     ArrowRight: { pressed: false }, 
     ArrowLeft: { pressed: false } 
 };
+
 
 function rectangularCollision({ rectangle1, rectangle2 }) { 
     return (
@@ -114,21 +120,32 @@ function animate() {
         enemy.velocity.x = -5;
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') { 
         enemy.velocity.x = 5;
-    } 
+    }
+
+	// Wall collision
+	if(player.position.x < 0){
+		player.position.x = 0;
+	} else if (player.position.x + player.width > canvas.width) {
+		player.position.x = canvas.width - player.width;
+	}
+	
+	if(enemy.position.x < 0){
+		enemy.position.x = 0;
+	} else if (enemy.position.x + enemy.width > canvas.width) {
+		enemy.position.x = canvas.width - enemy.width;
+	}
 
     // Detect collision
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy })) { 
         player.isAttacking = false;
         console.log('Player hit Enemy!');
-    } 
-}
+    }
 
 	if (rectangularCollision({ rectangle1: enemy, rectangle2: player })) { 
         enemy.isAttacking = false;
         console.log('Enemy hit Player!');
-    } 
+    }
 }
-
 // Start the game loop
 animate();
 
@@ -163,7 +180,10 @@ window.addEventListener('keydown', (event) => {
             if (enemy.position.y + enemy.height >= canvas.height) {
                 enemy.velocity.y = -20;
             }
-            break; 
+            break;
+		case 'ArrowDown': 
+            enemy.attack();
+            break;
     } 
 });
 
