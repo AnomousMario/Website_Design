@@ -45,7 +45,7 @@ class Sprite {
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
 
-        // Ground & wall collision check
+        // Ground collision check
         if (this.position.y + this.height + this.velocity.y >= canvas.height) { 
             this.velocity.y = 0;
             this.position.y = canvas.height - this.height; 
@@ -132,7 +132,7 @@ function animate() {
 	} else if (enemy.position.x + enemy.width > canvas.width) {
 		enemy.position.x = canvas.width - enemy.width;
 	}
-    // Detect collision
+    // Detect hitbox collision
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking){ 
         player.isAttacking = false
         enemy.health -= 20
@@ -140,8 +140,9 @@ function animate() {
     }
 
 	if (rectangularCollision({ rectangle1: enemy, rectangle2: player })) { 
-        enemy.isAttacking = false;
-        console.log('Enemy hit Player!');
+        enemy.isAttacking = false
+		player.health -= 20
+        document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 }
 // Start the game loop
