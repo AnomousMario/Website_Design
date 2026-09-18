@@ -45,7 +45,7 @@ class Sprite {
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
 
-        // Ground collision check
+        // Ground & wall collision check
         if (this.position.y + this.height + this.velocity.y >= canvas.height) { 
             this.velocity.y = 0;
             this.position.y = canvas.height - this.height; 
@@ -55,17 +55,14 @@ class Sprite {
 		if (this.position.x + this.width + this.velocity.x >= canvas.width) {
 			this.velocity.x = 0;
 		}
-		
-		// Wall collision check
 	}
-
-    attack() { 
-        this.isAttacking = true;
-        setTimeout(() => { 
-            this.isAttacking = false;
-        }, 100);
-    } 
-} 
+		attack(){ 
+			this.isAttacking = true;
+			setTimeout(() => { 
+				this.isAttacking = false;
+			}, 100);
+		}
+	} 
 
 const player = new Sprite({ 
     position: { x: 50, y: 100 }, 
@@ -96,7 +93,7 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
         rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height && 
         rectangle1.isAttacking
     );
-} 
+}
 
 function animate() { 
     window.requestAnimationFrame(animate);
