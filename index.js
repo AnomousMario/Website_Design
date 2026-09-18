@@ -22,7 +22,8 @@ class Sprite {
             height: 50, 
         };
         this.color = color;
-        this.isAttacking = false;
+        this.isAttacking;
+        this.health = 100;
     } 
 
     draw() { 
@@ -134,11 +135,11 @@ function animate() {
 	} else if (enemy.position.x + enemy.width > canvas.width) {
 		enemy.position.x = canvas.width - enemy.width;
 	}
-
     // Detect collision
-    if (rectangularCollision({ rectangle1: player, rectangle2: enemy })) { 
-        player.isAttacking = false;
-        console.log('Player hit Enemy!');
+    if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking){ 
+        player.isAttacking = false
+        enemy.health -= 20
+        document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
 
 	if (rectangularCollision({ rectangle1: enemy, rectangle2: player })) { 
