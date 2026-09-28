@@ -1,0 +1,12 @@
+* {
+padding: 0px;
+margin: 0px;
+}
+ul{
+list-style: none;
+background: #22438C;
+}
+ul li{
+display: inline-block;
+position: relative;
+}
