@@ -1,0 +1,9 @@
+const audio = document.createElement("audio");
+audio.src = "C:\Users\vt9521\OneDrive - aisd.net\mario-yeet-yapping-mario-323239.mp3";
+
+const musicButton = document.getElementById("music-button");
+musicButton.addEventListener("click", playMusic);
+
+function playMusic(){
+	audio.play();
+}

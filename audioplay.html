@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 	<html>
 		<head>
-		<meta charaset= "utf-8">
+		<meta charset= "utf-8">
 		<title>Mario</title>
+		<style>
+		body{
+			color:white;
+			text-align:center;
+			background-color:black;
+		}
+		</style>
 		</head>
 			<body>
-			<div>
-				<div>
-					<audio id="mario-gibberish" src="https://i.ebayimg.com/images/g/dAsAAeSwnPhqov5f/s-l1600.webp" autostart="false"></audio>
-					<button onclick="clickMario();"></button>
-				</div>
-			</div>
+			<h1 style="font-size:60px">Super Mario</h1>
+				<audio id="myAudio">
+					<source src="C:\Users\vt9521\OneDrive - aisd.net\mario-yeet-yapping-mario-323239.mp3" type="audio/mpeg">
+				</audio>
+				<figure>
+				<img src="https://i.ebayimg.com/images/g/dAsAAeSwnPhqov5f/s-l1600.webp" alt="Sound Player" style="cursor:pointer; height:310px; width:250px; display:block; margin-left:auto; margin-right:auto;" onclick="document.getElementById('myAudio').play()">
+				<figcaption>The Mario Button</figcaption>
+				</figure>
 			</body>
 	</html>
