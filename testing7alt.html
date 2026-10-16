@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Mario</title>
-    <style>
-        * { box-sizing: border-box; }
-    </style>
+  <meta charset="utf-8">
+  <title>Mario</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #222; /* Optional: dark background */
+    }
+  </style>
 </head>
 <body>
-    <!-- Main container div -->
-    <div style="position: relative; display: inline-block;">
-        
-        <!-- UI Container (Flexbox) -->
-        <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px; z-index: 10;">
-            
-            <!-- Player Health -->
-            <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end;">
-                <div style="background-color: red; height: 30px; width: 100%;"></div>
-                <div id="playerHealth" style="position: absolute; background: yellow; top: 0; right: 0; bottom: 0; width: 100%;"></div>
-            </div>
-            
-            <!-- Timer -->
-            <div style="background-color: blue; height: 100px; width: 100px; flex-shrink: 0;"></div>
-            
-            <!-- Enemy Health -->
-            <div style="position: relative; height: 30px; width: 100%;">
-                <div style="background-color: red; height: 30px;"></div>
-                <div id="enemyHealth" style="position: absolute; background: yellow; top: 0; right: 0; bottom: 0; left: 0;"></div>
-            </div>
-        </div>
-
-        <!-- Game Canvas -->
-        <canvas id="gameCanvas"></canvas>
+  <!-- Main container div -->
+  <div style="position: relative; display: inline-block;">
+    <!-- UI Container (Flexbox) -->
+    <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px; z-index: 10;">
+      <!-- Player Health -->
+      <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end;">
+        <div style="background-color: red; height: 30px; width: 100%;"></div>
+        <div id="playerHealth" style="position: absolute; background: yellow; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+      </div>
+      <!-- Timer -->
+      <div style="background-color: blue; height: 100px; width: 100px; flex-shrink: 0;"></div>
+      <!-- Enemy Health -->
+      <div style="position: relative; height: 30px; width: 100%;">
+        <div style="background-color: red; height: 30px;"></div>
+        <div id="enemyHealth" style="position: absolute; background: yellow; top: 0; right: 0; bottom: 0; left: 0;"></div>
+      </div>
     </div>
-
-    <script src="index.js"></script>
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+  </div>
+  
+  <script src="index.js"></script>
+  <button type="button" style="background-color:red;border-color:brown; margin-top: 15px;">
+    <a href="menu.html" style="color:black">Go Back</a>
+  </button>
 </body>
 </html>
