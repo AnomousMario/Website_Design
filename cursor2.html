@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		<meta charset="UTF-8">
+		<title>Mario</title>
+		<link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+		<style>
+		body{
+		background-color:black;
+		color:white;
+        cursor: url('data:image/x-icon;base64,AAACAAEAICAAAAAAAACoCAAAFgAAACgAAAAgAAAAQAAAAAEACAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAAAA0NDQACgoKAD4+//////////////////4f///8B///+AH///gA///4AH//wAA//gAAH8AAAB+AAAAcAAAAGAAAADgAAAH4AAAB+AAAA/wwAAP/8AAH//gAD//4AB//+AA//8AAf/+AAf//AAP//wB///8A////gf////////////////////////='), auto;
+		}
+		ul{
+		list-style: none;
+		background: #6f0000;
+		padding-left:0;
+		margin:0;
+		}
+		ul li{
+		display: inline-block;
+		position: relative;
+		}
+		ul li a{
+		display: block;
+		padding: 20px 30px;
+		color: white;
+		text-decoration: none;
+		text-align: center;
+		font-size: 20px;
+		}
+		ul li ul.dropdown li{
+		display: block;
+		}
+		ul li ul.dropdown{
+		width: 100%;
+		background: #400000;
+		position: absolute;
+		z-index: 999;
+		display: none;
+		}
+		ul li a:hover{
+		background: #560d0d;
+		}
+		ul li:hover ul.dropdown{
+		display: block;
+		}
+		footer{
+		background: #c30010;
+		}
+		h2{background-color: #1C2951; color: white}
+		.scroll-mario {
+		background-color: #1C2951; 
+		color: white;
+		}
+		.my_cover{
+		width: 100%;
+		height: 500px;
+		object-fit: cover;
+		}
+		.container{
+		width: 100%;
+		height: 500px;
+		position: relative;
+		}
+		.container a{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		color: white;
+		text-decoration: none;
+		}
+		.img{
+		display: block;
+		vertical-align: bottom;
+		}
+		.inset-outline{
+		outline-style: inset;
+		outline-color:#B22222;
+		outline-width:10px;
+		display:inline-block;
+		}
+		.figure{
+		display:flex;
+		flex-direction: column; 
+		align-items: center; 
+		justify-content: center; 
+		margin: 20px auto;
+		}
+		.text-outline{
+		-webkit-text-stroke: 2px black;
+		}
+		.text-outline-alt{
+		-webkit-text-stroke: .5px red;
+		}
+		@import url('https://fonts.cdnfonts.com/css/new-super-mario-font-u');
+		.mario-text{
+		font-family: 'New Super Mario Font U', sans-serif;
+		}
+    </style>
+</head>
+<body>
+    <h1>Super Mario 64 Hand Cursor</h1>
+</body>
+</html>
+Use code with caution.
+
+Method 2: External .cur File
+
+1. Download a Super Mario 64 cursor file (such as from RW-Designer Super Mario 64 Cursors).
+2. Place the mario.cur file in your website's root directory or folder.
+3. Add this CSS to your stylesheet or <style> block:
+css
+body {
+    cursor: url('mario.cur'), auto;
+}
+
+a {
+    cursor: url('mario-link.cur'), pointer;
+}
+Use code with caution.
+Would you like help converting a specific PNG image into a base64 cursor, or are you looking for a link-select hand cursor instead of the default pointer?
+
+		</style>
+		</head>
+			<body>
+			<div>
+				<div class="container img">
+				<a class="text-outline mario-text" style="font-size:80px">It's-a Me, Mario!</a>
+				<img class="my_cover" src="https://media.wired.com/photos/5926c1288d4ebc5ab806b602/4:3/w_929,h_697,c_limit/SuperMarioRunHP.jpg">
+				</div>
+				<ul class="mario-text">
+					<li><a href="menu.html">Home Mario</a></li>
+					<li>
+						<a href="#SpecialMario">Special Mario</a>
+						<ul class="dropdown">
+							<li><a href="testing4.html">Mario Slide</a></li>
+							<li><a href="testing7alt.html">Mario Game (W.I.P.)</a></li>
+							<li><a href="#Mario3">Mario 3</a></li>
+							<li><a href="#Mario4">Mario 4</a></li>
+						</ul>
+					</li>
+					<li><a href="#Mario5">About Mario</a></li>
+					<li><a href="#Mario6">Contact Mario</a></li>
+				</ul>
+			</div>
+			<h1 class="mario-text text-outline-alt" style="font-size:60px;text-align:center;text-decoration:underline">Welcome to Mario's World!</h1>
+			<p style="text-align:center">This is the place where Marios roam freely around and create random stuff to keep your blood pumping with entertainment and ensure your satisfaction on this platform!</p>	
+				<audio id="myAudio">
+					<source src="C:\Users\vt9521\OneDrive - aisd.net\Desktop\web_design\mario-yeet-yapping-mario-323239.mp3" type="audio/mpeg">
+				</audio>
+				<figure class="figure">
+			<div class="inset-outline">
+				<img src="https://i.ebayimg.com/images/g/dAsAAeSwnPhqov5f/s-l1600.webp" alt="Sound Player" style="cursor:pointer; height:320px; width:250px; display:block; margin-left:auto; margin-right:auto;" onclick="document.getElementById('myAudio').play()">
+				<figcaption class="mario-text" style="text-align:center; background-color:#780606">The Mario Button</figcaption>
+			</div>	
+				</figure>
+			<div style="width:400px;height:400px;overflow:auto;float:center;padding:10px;background-color:#c30010;margin-left:auto; margin-right:auto;">
+                    <article style="text-align:center">
+                    <h2 class="mario-text">Kellytoy Mario</h2>
+                    This is the Kellytoy Mario plush made back in early 2000s made by Kellytoy for the release of the Nintendo set. 
+                    The first time this lil guy was made he had a manufacturing error where he was given black eyes, but later releases corrected it to give him blue eyes.
+                    These plushies were made at the carnivals, so they are prone to be cheaply made and have little to no quality control.
+                    But for some reason these little guys have gotten a bit pricey. More evidently on eBay where they can cost at least 20 dollars for a somewhat decent condition.
+                    <figure>
+                    <img src="https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp" alt="Image 1" style="width:300px; display:block; margin:auto;">
+                    <figcaption class="scroll-mario">This is the Kellytoy Mario plush released in 2002</figcaption>
+                    <br>
+                    <img src="https://i.ebayimg.com/images/g/kAwAAeSwNXNqlNy0/s-l1600.webp" alt="Image 2" style="width:300px; display:block; margin:auto;">
+                    <figcaption class="scroll-mario">This is the rare Kellytoy Mario plush variant with the black eyes made in 2001, before they fixed the manufacturing error.</figcaption>
+                    </figure>
+                </article>
+                <label for="mario-language">Choose a Mario language:</label>
+            <select name="Mario Languages" id="mario-language">
+                <option value="mario-gibberish">Mario Gibberish</option>
+                <option value="sign-mario">Sign Mario</option>
+                <option value="mario-mario">Mario Mario</option>
+                <option value="italian-mario">Italian Mario</option>
+            </select>
+            </div>
+			<p class="mario-text" style="clear:both;text-align:center">The Mario Stuff</p>
+			<a href="testing2.html" target="_blank">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Mario_emblem.svg/960px-Mario_emblem.svg.png" style="width:20px;height:20px">
+			</a>
+			<footer class="mario-text" style="clear:both; margin:0">Mario(™)</footer>
+			</body>
+	</html>

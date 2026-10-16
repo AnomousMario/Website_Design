@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mario</title>
+        <link rel="stylesheet" href="main.css">
+        <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            
+            html, body {
+              cursor: none;
+            }
+          
+            .custom-cursor {
+              position: absolute;
+              top: 0;
+              left: 0;
+              display: none;
+              pointer-events: none; /* Prevents the cursor div from blocking mouse events on elements below it */
+            }
+          
+            .site-wide {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              border: 2px solid black;
+            }
+          
+            .site-wide .pointer {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              background-color: black;
+              transition: width .1s ease-in-out, height .1s ease-in-out;
+            }
+            .site-wide.active .pointer{
+            width:20px;
+            height:20px;
+            }
+          </style>
+          
+          <div class="custom-cursor site-wide">
+            <div class="pointer"></div>
+          </div>
+          
+          <script>
+            const site_wide_cursor = document.querySelector('.custom-cursor.site-wide');
+          
+            document.addEventListener('mouseenter', () => {
+              site_wide_cursor.style.display = 'block';
+            });
+          
+            document.addEventListener('mouseleave', () => {
+              site_wide_cursor.style.display = 'none';
+            });
+          
+            document.addEventListener('mousemove', TrackCursor);
+
+            document.addEventListener('mousedown', ()=> site_wide_cursor.classList.add('active'));
+            document.addEventListener('mouseup', ()=> site_wide_cursor.classList.remove('active'));
+          
+            function TrackCursor(evt) {
+              const width = site_wide_cursor.clientWidth;
+              const height = site_wide_cursor.clientHeight;
+              site_wide_cursor.style.transform = `translate(${evt.clientX - width / 2}px, ${evt.clientY - height / 2}px)`;
+            }
+          </script>
+    </body>
+</html>
