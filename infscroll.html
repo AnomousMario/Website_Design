@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mario</title>
+    <link rel="stylesheet" href="infcarousel.css">
+    <link href="https://i.ebayimg.com/images/g/oloAAeSwI1NqtZI8/s-l300.webp" type="image/x-icon" rel="icon">
+    <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+    <style>
+    @import url('https://fonts.cdnfonts.com/css/new-super-mario-font-u');
+	.mario-text{
+	font-family: 'New Super Mario Font U', sans-serif;
+	}   
+    .button-theme{
+    background-color:red;
+    border:none;
+    color:black;
+    padding:15px 32px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:16px;
+    cursor:pointer;
+    }
+    .button-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+	transition: transform .3s ease;
+    }
+    .button-container:hover{
+	transform: scale(1.05);
+	}
+    </style>
+</head>
+<body style="background-color:black">
+    <div class="carousel">
+        <!-- Group 1: Original Track -->
+        <div class="group">
+            <div class="card"><img src="https://i.ebayimg.com/images/g/GfwAAOSwd-pjH1t3/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/pjMAAeSw1qNqkTqv/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/VssAAeSwgwRqg0HS/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/1FMAAeSw9OVqhPqh/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/vJwAAeSwjCxpEAoP/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/cVkAAeSwDQpohUJd/s-l1600.webp"></div>
+        </div>
+        <!-- Group 2: Identical Duplicate Track for Seamless Loop -->
+        <div aria-hidden="true" class="group">
+            <div class="card"><img src="https://i.ebayimg.com/images/g/GfwAAOSwd-pjH1t3/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/pjMAAeSw1qNqkTqv/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/VssAAeSwgwRqg0HS/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/1FMAAeSw9OVqhPqh/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/vJwAAeSwjCxpEAoP/s-l1600.webp"></div>
+            <div class="card"><img src="https://i.ebayimg.com/images/g/cVkAAeSwDQpohUJd/s-l1600.webp"></div>
+        </div>
+    </div>
+    <a class="button-container button-theme mario-text" href="menu.html">Go Back</a>
+</body>
+</html>

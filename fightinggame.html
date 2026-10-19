@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Mario</title>
+  <link href="https://i.ebayimg.com/images/g/oloAAeSwI1NqtZI8/s-l300.webp" type="image/x-icon" rel="icon">
+  <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -16,6 +18,30 @@
       align-items: center;
       background-color: #222; /* Optional: dark background */
     }
+  @import url('https://fonts.cdnfonts.com/css/new-super-mario-font-u');
+	.mario-text{
+	font-family: 'New Super Mario Font U', sans-serif;
+	}   
+    .button-theme{
+    background-color:red;
+    border:none;
+    color:black;
+    padding:15px 32px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:16px;
+    cursor:pointer;
+    }
+    .button-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+	transition: transform .3s ease;
+    }
+    .button-container:hover{
+	transform: scale(1.05);
+	}
   </style>
 </head>
 <body>
@@ -41,8 +67,7 @@
   </div>
   
   <script src="index.js"></script>
-  <button type="button" style="background-color:red;border-color:brown; margin-top: 15px;">
-    <a href="menu.html" style="color:black">Go Back</a>
-  </button>
+
+    <a href="menu.html" class="button-container button-theme mario-text">Go Back</a>
 </body>
 </html>
