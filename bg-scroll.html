@@ -3,8 +3,64 @@
     <head>
         <meta charset="UTF-8">
         <title>Mario</title>
+        <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+        <style>
+        :root{
+        --black:black;
+        --white:white;
+        --backgroundSize:300px;
+        }
+        body{
+        box-sizing:border-box;
+        margin:0;
+        height:100vh;
+        background-image: radial-gradient(rgba(215, 0, 0, 0.5), rgba(204, 0, 0, 0.5)), url(https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp);
+        background-size:10%;
+        color:white;
+        display:grid;
+        place-items:center;
+        animation:movingBackground 150s linear infinite;
+        }
+        .overlay {
+        background: radial-gradient(#d70000,#c00);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        opacity: 0.05;
+        z-index: 2;
+        }
+        @keyframes movingBackground{
+        from{background-position:0,0;}
+        to{background-position:var(--backgroundSize) var(--backgroundSize)}
+        }
+        @import url('https://fonts.cdnfonts.com/css/new-super-mario-font-u');
+        .mario-text{
+	    font-family: 'New Super Mario Font U', sans-serif;
+	    }   
+        .button-theme{
+        background-color:red;
+        border:none;
+        color:black;
+        padding:15px 32px;
+        text-align:center;
+        text-decoration:none;
+        display:inline-block;
+        font-size:16px;
+        cursor:pointer;
+        }
+        .button-container{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+	    transition: transform .3s ease;
+        }
+        .button-container:hover{
+	    transform: scale(1.05);
+	    }
+        </style>
     </head>
     <body>
-        
+        <div class="overlay"></div>
+        <a class="button-container button-theme mario-text" href="menu.html">Go Back</a>
     </body>
 </html>
