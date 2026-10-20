@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Mario</title>
         <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+        <link href="https://i.ebayimg.com/images/g/oloAAeSwI1NqtZI8/s-l300.webp" type="image/x-icon" rel="icon">
         <style>
         :root{
         --black:black;
@@ -19,7 +20,7 @@
         color:white;
         display:grid;
         place-items:center;
-        animation:movingBackground 150s linear infinite;
+        animation:movingBackground 100s linear infinite;
         }
         .overlay {
         background: radial-gradient(#d70000,#c00);
@@ -28,6 +29,7 @@
         position: absolute;
         opacity: 0.05;
         z-index: 2;
+        pointer-events: none;
         }
         @keyframes movingBackground{
         from{background-position:0,0;}
@@ -60,7 +62,7 @@
         </style>
     </head>
     <body>
-        <div class="overlay"></div>
         <a class="button-container button-theme mario-text" href="menu.html">Go Back</a>
+        <div class="overlay"></div>
     </body>
 </html>
