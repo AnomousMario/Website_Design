@@ -15,21 +15,29 @@
         box-sizing:border-box;
         margin:0;
         height:100vh;
-        background-image: radial-gradient(rgba(215, 0, 0, 0.5), rgba(204, 0, 0, 0.5)), url(https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp);
+        background-image:url(https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp);
         background-size:10%;
         color:white;
         display:grid;
         place-items:center;
-        animation:movingBackground 100s linear infinite;
+        animation:movingBackground 70s linear infinite;
         }
         .overlay {
-        background: radial-gradient(#d70000,#c00);
+        background: radial-gradient(circle,#c90606,rgb(151, 20, 8),rgb(1,1,1));
         height: 100%;
         width: 100%;
         position: absolute;
-        opacity: 0.05;
-        z-index: 2;
+        opacity: 0.6;
+        z-index:1;
         pointer-events: none;
+        }
+        .side-overlay{
+        background-image: linear-gradient(right,black,red);
+        height:100%;
+        width:100%;
+        position: absolute;
+        z-index:2;
+        pointer-events:none;
         }
         @keyframes movingBackground{
         from{background-position:0,0;}
@@ -62,7 +70,7 @@
         </style>
     </head>
     <body>
-        <a class="button-container button-theme mario-text" href="menu.html">Go Back</a>
+        <a class="button-container button-theme mario-text" style="z-index:3" href="menu.html">Go Back</a>
         <div class="overlay"></div>
     </body>
 </html>
