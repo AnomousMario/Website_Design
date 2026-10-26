@@ -45,7 +45,7 @@ class Sprite {
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
 
-        // Ground collision check
+        // Ground and wall collision check
         if (this.position.y + this.height + this.velocity.y >= canvas.height) { 
             this.velocity.y = 0;
             this.position.y = canvas.height - this.height; 
@@ -55,14 +55,17 @@ class Sprite {
 		if (this.position.x + this.width + this.velocity.x >= canvas.width) {
 			this.velocity.x = 0;
 		}
+        
+        // Character collision
 	}
-		attack(){ 
-			this.isAttacking = true;
-			setTimeout(() => { 
-				this.isAttacking = false;
-			}, 100);
-		}
-	} 
+
+    attack() { 
+        this.isAttacking = true;
+        setTimeout(() => { 
+            this.isAttacking = false;
+        }, 100);
+    } 
+} 
 
 const player = new Sprite({ 
     position: { x: 50, y: 100 }, 
@@ -93,6 +96,16 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
         rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height && 
         rectangle1.isAttacking
     );
+} 
+let timer = 10
+decreaseTimer();
+animate();
+function decreaseTimer(){
+setTimeout(decreaseTimer,1000);
+if(timer>0){
+timer--;
+document.querySelector('#timer').innerHTML = timer;
+}
 }
 
 function animate() { 
@@ -120,6 +133,31 @@ function animate() {
         enemy.velocity.x = 5;
     }
 
+    function handleCharacterCollision(sprite1, sprite2) {
+        // Check if they are overlapping horizontally and vertically
+        if (
+          sprite1.position.x + sprite1.width >= sprite2.position.x &&
+          sprite1.position.x <= sprite2.position.x + sprite2.width &&
+          sprite1.position.y + sprite1.height >= sprite2.position.y &&
+          sprite1.position.y <= sprite2.position.y + sprite2.height
+        ) {
+          // Determine which side the collision happened on based on their velocities/positions
+          if (sprite1.position.x < sprite2.position.x) {
+            // Sprite1 is on the left, push them apart
+            const overlap = (sprite1.position.x + sprite1.width) - sprite2.position.x;
+            sprite1.position.x -= overlap / 2;
+            sprite2.position.x += overlap / 2;
+          } else {
+            // Sprite1 is on the right, push them apart
+            const overlap = (sprite2.position.x + sprite2.width) - sprite1.position.x;
+            sprite1.position.x += overlap / 2;
+            sprite2.position.x -= overlap / 2;
+          }
+        }
+      }
+
+    handleCharacterCollision(player,enemy);
+
 	// Wall collision
 	if(player.position.x < 0){
 		player.position.x = 0;
@@ -132,7 +170,7 @@ function animate() {
 	} else if (enemy.position.x + enemy.width > canvas.width) {
 		enemy.position.x = canvas.width - enemy.width;
 	}
-    // Detect hitbox collision
+    // Detect collision
     if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking){ 
         player.isAttacking = false
         enemy.health -= 20
@@ -140,9 +178,8 @@ function animate() {
     }
 
 	if (rectangularCollision({ rectangle1: enemy, rectangle2: player })) { 
-        enemy.isAttacking = false
-		player.health -= 20
-        document.querySelector('#playerHealth').style.width = player.health + '%'
+        enemy.isAttacking = false;
+        console.log('Enemy hit Player!');
     }
 }
 // Start the game loop
