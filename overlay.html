@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mario</title>
+        <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+        <link href="https://i.ebayimg.com/images/g/oloAAeSwI1NqtZI8/s-l300.webp" type="image/x-icon" rel="icon">
+        <link href="overlay.css" rel="stylesheet">
+		<style>
+		body{
+		margin:0;
+		background-image:'https://i.ebayimg.com/images/g/oloAAeSwI1NqtZI8/s-l300.webp';
+		}
+		@import url('https://fonts.cdnfonts.com/css/new-super-mario-font-u');
+		.mario-text{
+		font-family: 'New Super Mario Font U', sans-serif;
+		}
+		</style>
+	</head>
+	<body>
+	<div id="overlay"></div>
+	</body>
+	<script>
+	function on(){
+	document.getElementbyId("overlay").style.display="block";
+	}
+	function off(){
+	document.getElementById("overlay").style.display="none";
+	}
+	</script>
