@@ -24,11 +24,24 @@
         background: radial-gradient(circle,#c90606,rgb(151, 20, 8),rgb(1,1,1));
         height: 100%;
         width: 100%;
-        position: flex;
+        position: fixed;
         opacity: 0.6;
-        z-index:1;
+        z-index:-1;
         pointer-events: none;
         }
+		.modal-overlay{
+		position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 99;
+        background: #000;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+		}
 		@keyframes movingBackground{
         from{background-position:0,0;}
         to{background-position:var(--backgroundSize) var(--backgroundSize)}
@@ -86,15 +99,6 @@
 		.mario-text{
 		font-family: 'New Super Mario Font U', sans-serif;
 		}
-        input[type="checkbox"]:checked ~ .modal {
-        display: block;
-        }
-
-        input[type="checkbox"]:checked ~ .overlay {
-        pointer-events: auto;
-        opacity: 0.8;
-        transform: scale(1);
-        }
         .modal{
         position:fixed;
         top:50%;
@@ -117,6 +121,11 @@
         transition:transform 0.3s ease, opacity 0.3s ease;
         transition-delay:0.1s;
         }
+		input[type="checkbox"]:checked ~ .modal-overlay {
+		pointer-events: auto;
+		opacity: 0.6;
+		transform: scale(1);
+		}
         .modal__content{
         display:block;
         padding:30px;
@@ -226,5 +235,6 @@
 			</a>
 			<footer class="mario-text" style="clear:both; margin:0">Mario(™)</footer>
 			</body>
-			<div></div>
+			<div class="modal-overlay"></div>
+			<div class="overlay"></div>
 	</html>
