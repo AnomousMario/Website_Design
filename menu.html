@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Mario</title>
 		<link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
-		<link href="https://i.ebayimg.com/images/g/oloAAeSwI1NqtZI8/s-l300.webp" type="image/x-icon" rel="icon">
+		<link href="icon.JPG" type="image/x-icon" rel="icon">
 		<link href="dropdown-menu.css" rel="stylesheet">
 		<style>
 		body{
@@ -20,8 +20,11 @@
         animation:movingBackground 60s linear infinite;
 		background-attachment:fixed;
 		}
-		html, body, a, button{
-  		cursor: url('cursor.cur'), auto;
+		*,::before,*::after{
+  		cursor: url('cursor.cur') 4 2, auto !important;
+		}
+		*:active{
+  		cursor: url('Mario 64 Move.cur') 4 2, auto !important;
 		}
 		.overlay{
         background: radial-gradient(circle,#c90606,rgb(151, 20, 8),rgb(1,1,1));
@@ -31,6 +34,7 @@
         opacity: 0.6;
         z-index:-1;
         pointer-events: none;
+		visibility:visible;
         }
 		.modal-overlay{
 		position: fixed;
@@ -44,6 +48,7 @@
         opacity: 0;
         transform: scale(0.5);
         transition: transform 0.3s ease, opacity 0.3s ease;
+		visibility:hidden;
 		}
 		@keyframes movingBackground{
         from{background-position:0,0;}
@@ -128,6 +133,7 @@
 		pointer-events: auto;
 		opacity: 0.6;
 		transform: scale(1);
+		visibility:visible;
 		}
         .modal__content{
         display:block;
