@@ -1,0 +1,267 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mario</title>
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+    <link href="icon.JPG" type="image/x-icon" rel="icon">
+    <link href="dropdown-menu.css" rel="stylesheet">
+    <link href="https://www.rw-designer.com/cursor-set/mario-64-2020">
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            box-sizing: border-box;
+            background-image: url(https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp);
+            background-size: 5%;
+            animation: movingBackground 90s linear infinite;
+            background-attachment: fixed;
+        }
+        
+        *, ::before, *::after {
+            cursor: url('cursor.cur') 4 2, auto !important;
+        }
+        
+        *:active {
+            cursor: url('Mario 64 Move.cur') 4 2, auto !important;
+        }
+        
+        ::-webkit-scrollbar, ::webkit-scrollbar-track, ::webkit-scrollbar-thumb, ::webkit-scrollbar-corner {
+            cursor: url("cursor.cur"), auto;
+        }
+        
+        .overlay {
+            background: radial-gradient(circle, #c90606, rgb(151, 20, 8), rgb(1,1,1));
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.6;
+            z-index: -1;
+            pointer-events: none;
+            visibility: visible;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 99;
+            background: #000;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            visibility: hidden;
+        }
+        
+        @keyframes movingBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100% 100%; }
+        }
+        
+        footer {
+            background: #c30010;
+            padding: 10px;
+        }
+        
+        .heading2 { background-color: #1C2951; color: white; }
+        .scroll-mario { background-color: #1C2951; color: white; }
+        
+        .my_cover {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .container {
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+        
+        .container a {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .img {
+            display: block;
+            vertical-align: bottom;
+        }
+        
+        .inset-outline {
+            outline-style: inset;
+            outline-color: #B22222;
+            outline-width: 10px;
+            display: inline-block;
+        }
+        
+        .figure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+        }
+        
+        .text-outline { -webkit-text-stroke: 2px black; }
+        .text-outline-alt { -webkit-text-stroke: .5px red; }
+        .mario-text { font-family: 'New Super Mario Font U', sans-serif; }
+        
+        /* Modal Rules */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 100;
+            transform: translate(-50%, -50%) scale(0.5);
+            width: 100%;
+            max-width: 640px;
+            pointer-events: none;
+            opacity: 0;
+            box-sizing: border-box;
+        }
+        
+        input[type="checkbox"]:checked ~ .modal {
+            pointer-events: auto;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition-delay: 0.1s;
+        }
+        
+        input[type="checkbox"]:checked ~ .modal-overlay {
+            pointer-events: auto;
+            opacity: 0.6;
+            transform: scale(1);
+            visibility: visible;
+        }
+        
+        .modal__content {
+            display: block;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        .button-theme {
+            background-color: red;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform .3s ease;
+        }
+        
+        .modal__content-image {
+            width: 100%;
+            height: auto;
+            max-height: 320px;
+            object-fit: contain;
+            margin: 15px 0;
+        }
+        
+        .button-container:hover { transform: scale(1.05); }
+
+        /* --- PARALLAX ADDITIONS --- */
+        .parallax-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.7); /* Background tint to keep text readable over moving background */
+            margin: 30px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 2px dashed red;
+        }
+
+        .parallax {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07QN7G-wlBW7HqZjCqeNP8znOrYgm_TMr4t4D3h77FbLWjfm9OfqQ4mx-&s=10");
+            height: 50vh; /* Reduced from 100vh so it frames nicely within the main website content */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin: 20px 0;
+        }
+        
+        .parallax2 {
+            background-image: url("https://i.ebayimg.com/images/g/2a8AAeSwwRFp~MI7/s-l1600.webp");
+            height: 50vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class="container img">
+            <a class="text-outline mario-text" style="font-size:80px">It's-a Me, Mario!</a>
+            <img class="my_cover" src="https://media.wired.com/photos/5926c1288d4ebc5ab806b602/4:3/w_929,h_697,c_limit/SuperMarioRunHP.jpg">
+        </div>
+        
+        <ul class="mario-text">
+            <li><a href="menu.html">Home Mario</a></li>
+            <li>
+                <a href="#SpecialMario">Special Mario</a>
+                <ul class="dropdown">
+                    <li><a href="slider.html">Mario Slide</a></li>
+                    <li><a href="fightinggame.html">Mario Game (W.I.P.)</a></li>
+                    <li><a href="infscroll.html">Mario Scrolling</a></li>
+                    <li><a href="bg-scroll.html">Mario Background</a></li>
+                </ul>
+            </li>
+            <li><a href="#Mario5">About Mario</a></li>
+            <li><a href="#Mario6">Contact Mario</a></li>
+        </ul>
+    </div>
+
+    <h1 class="mario-text text-outline-alt" style="font-size:60px;text-align:center;text-decoration:underline">Welcome to Mario's World!</h1>
+    
+    <p style="text-align:center">This website is a way to showcase the skills and fundamentals that me, AnonomousMario, have gained throughout time. Feel free to explore this website made using the power of Marios. Check out the other projects within the main menu and I hope you enjoy what I have to offer. <br>Have fun and stay safe!!!!</p>
+
+    <audio id="myAudio">
+        <source src="mario-yeet-yapping-mario-323239.mp3" type="audio/mpeg">
+    </audio>
+
+    <figure class="figure">
+        <div class="inset-outline">
+            <img src="https://i.ebayimg.com/images/g/dAsAAeSwnPhqov5f/s-l1600.webp" alt="Sound Player" style="cursor:pointer; height:320px; width:250px; display:block; margin-left:auto; margin-right:auto;" onclick="document.getElementById('myAudio').play()">
+            <figcaption class="mario-text" style="text-align:center; background-color:#780606">The Mario Button</figcaption>
+        </div>
+    </figure>
+
+    <div style="width:400px;height:400px;overflow:auto;padding:10px;background-color:#c30010;margin-left:auto; margin-right:auto;">
+        <article style="text-align:center">
+            <h2 class="mario-text heading2">Kellytoy Mario</h2>
+            This is the Kellytoy Mario plush made back in early 2000s made by Kellytoy for the release of the Nintendo set. The first time this lil guy was made he had a manufacturing error where he was given black eyes, but later releases corrected it to give him blue eyes. These plushies were made at the carnivals, so they are prone to be cheaply made and have little to no quality control. But for some reason these little guys have gotten a bit pricey. More evidently on eBay where they can cost at least 20 dollars for a somewhat decent condition.
+            <figure>
+                <img src="https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp" alt="Image 1" style="width:300px; display:block; margin:auto;">
+                <figcaption class="scroll-mario">This is the Kellytoy Mario plush released in 2002</figcaption>
+                <br>
+                <img src="https://i.ebayimg.com/images/g/kAwAAeSwNXNqlNy0/s-l1600.webp" alt="Image 2" style="width:300px; display:block; margin:auto;">
+                <figcaption class="scroll-mario">This is the rare Kellytoy Mario plush variant with the black eyes made in 2001, before they fixed the manufacturing error.</figcaption>

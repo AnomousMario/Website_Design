@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Mario</title>
 		<link href="https://fonts.cdnfonts.com/css/new-super-mario-font-u" rel="stylesheet">
+		<link href="https://fonts.cdnfonts.com/css/utendo" rel="stylesheet">
 		<link href="icon.JPG" type="image/x-icon" rel="icon">
 		<link href="dropdown-menu.css" rel="stylesheet">
 		<link href="https://www.rw-designer.com/cursor-set/mario-64-2020">
@@ -18,7 +19,7 @@
         background-size:5%;
         color:white;
         display:grid;
-        animation:movingBackground 60s linear infinite;
+        animation:movingBackground 90s linear infinite;
 		background-attachment:fixed;
 		}
 		*,::before,*::after{
@@ -114,6 +115,10 @@
 		.mario-text{
 		font-family: 'New Super Mario Font U', sans-serif;
 		}
+		@import url('https://fonts.cdnfonts.com/css/utendo');
+		.other-text{
+		font-family: 'Utendo', sans-serif;
+		}
         .modal{
         position:fixed;
         top:50%;
@@ -198,7 +203,7 @@
 				</ul>
 			</div>
 			<h1 class="mario-text text-outline-alt" style="font-size:60px;text-align:center;text-decoration:underline">Welcome to Mario's World!</h1>
-			<p style="text-align:center">This website is a way to showcase the skills and fundamentals that me, AnonomousMario, have gained throughout time. Feel free to explore this website made using the power of Marios. Check out the other projects within the main menu and I hope you enjoy what I have to offer. <br>Have fun and stay safe!!!!</p>	
+			<p class="other-text" style="text-align:center">This website is a way to showcase the skills and fundamentals that me, AnomousMario (yes I spelled anonomous wrong), have gained throughout time. Feel free to explore this website made using the power of Marios. Check out the other projects within the main menu and I hope you enjoy what I have to offer. <br>Have fun and stay safe!!!!</p>	
 				<audio id="myAudio">
 					<source src="mario-yeet-yapping-mario-323239.mp3" type="audio/mpeg">
 				</audio>
@@ -211,20 +216,20 @@
 			<div style="width:400px;height:400px;overflow:auto;float:center;padding:10px;background-color:#c30010;margin-left:auto; margin-right:auto;">
                     <article style="text-align:center">
                     <h2 class="mario-text heading2">Kellytoy Mario</h2>
-                    This is the Kellytoy Mario plush made back in early 2000s made by Kellytoy for the release of the Nintendo set. 
+                    <p class="other-text">This is the Kellytoy Mario plush made back in early 2000s made by Kellytoy for the release of the Nintendo set. 
                     The first time this lil guy was made he had a manufacturing error where he was given black eyes, but later releases corrected it to give him blue eyes.
                     These plushies were made at the carnivals, so they are prone to be cheaply made and have little to no quality control.
-                    But for some reason these little guys have gotten a bit pricey. More evidently on eBay where they can cost at least 20 dollars for a somewhat decent condition.
+                    But for some reason these little guys have gotten a bit pricey. More evidently on eBay where they can cost at least 20 dollars for a somewhat decent condition.</p>
                     <figure>
                     <img src="https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp" alt="Image 1" style="width:300px; display:block; margin:auto;">
-                    <figcaption class="scroll-mario">This is the Kellytoy Mario plush released in 2002</figcaption>
+                    <figcaption class="scroll-mario other-text">This is the Kellytoy Mario plush released in 2002</figcaption>
                     <br>
                     <img src="https://i.ebayimg.com/images/g/kAwAAeSwNXNqlNy0/s-l1600.webp" alt="Image 2" style="width:300px; display:block; margin:auto;">
-                    <figcaption class="scroll-mario">This is the rare Kellytoy Mario plush variant with the black eyes made in 2001, before they fixed the manufacturing error.</figcaption>
+                    <figcaption class="scroll-mario other-text">This is the rare Kellytoy Mario plush variant with the black eyes made in 2001, before they fixed the manufacturing error.</figcaption>
                     </figure>
                 </article>
-                <label for="mario-language">Choose a Mario language:</label>
-            <select name="Mario Languages" id="mario-language">
+                <label class="other-text" for="mario-language">Choose a Mario language:</label>
+            <select class="other-text" name="Mario Languages" id="mario-language">
                 <option value="mario-gibberish">Mario Gibberish</option>
                 <option value="sign-mario">Sign Mario</option>
                 <option value="mario-mario">Mario Mario</option>
