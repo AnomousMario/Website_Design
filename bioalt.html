@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clover's RPG Biography</title>
+    <link rel="icon" type="images/x-icon" href="https://i.etsystatic.com/50698566/r/il/0a9a64/5914890084/il_fullxfull.5914890084_l49i.jpg">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/new-super-mario-font-u');
+
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'New Super Mario Font U', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .topnav {
+            display: flex;
+            justify-content: center;
+            background: darkgray;
+        }
+
+        .topnav button {
+            padding: 14px 16px;
+            border: 0;
+            background: transparent;
+            color: #000;
+            font: inherit;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .topnav button.active {
+            background: red;
+            color: #fff;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        #search {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0 0 20px;
+            padding: 12px;
+            font: inherit;
+            font-size: 16px;
+        }
+
+        #entries {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .entry {
+            width: min(300px, 100%);
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .entry img {
+            display: block;
+            width: 100%;
+            max-height: 260px;
+            object-fit: contain;
+            transition: transform .25s ease, filter .25s ease;
+        }
+
+        .entry:hover img,
+        .entry:focus-visible img{
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 10px rgba(255,255,255,.5))
+        }
+
+        .entry span {
+            display: block;
+            padding: 10px;
+            font-size: 20px;
+            transition: transform .25s ease, color .25s ease, text-shadow .25s ease;
+        }
+
+        .entry:hover span,
+        .entry:focus-visible span {
+            color: #ffd700;
+            transform: translateY(-1px) scale(1.08);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        .text-page {
+            max-width: 700px;
+            margin: 30px auto;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            display: grid;
+            place-items: center;
+            padding: 16px;
+            background: rgb(0 0 0 / 80%);
+        }
+
+        .modal {
+            box-sizing: border-box;
+            width: min(640px, 100%);
+            max-height: 90vh;
+            overflow: auto;
+            padding: 24px;
+            background: #fff;
+            color: #000;
+        }
+
+        .modal h2 {
+            text-align: center;
+        }
+
+        .modal img {
+            display: block;
+            width: 100%;
+            max-height: 320px;
+            margin: 15px 0;
+            object-fit: contain;
+        }
+
+        .modal button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 24px;
+            border: 0;
+            background: red;
+            color: #000;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+        transform: scale(1.08);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .topnav button {
+                flex: 1;
+                padding: 12px 8px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Clover's RPG Biography</h1>
+
+    <nav class="topnav" aria-label="Main navigation">
+        <button type="button" class="active" data-page="home" aria-current="page">Home</button>
+        <button type="button" data-page="about">About</button>
+        <button type="button" data-page="credits">Credits</button>
+    </nav>
+
+    <main>
+        <section id="home-page">
+            <label for="search">Search biographies</label>
+            <input id="search" type="search" placeholder="Search by name...">
+            <div id="entries" aria-live="polite"></div>
+            <p id="load-error" role="alert" hidden></p>
+        </section>
+        <section id="text-page" class="text-page" hidden></section>
+    </main>
+
+    <div id="modal-backdrop" class="modal-backdrop" hidden>
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+            <h2 id="modal-name"></h2>
+            <p id="modal-description"></p>
+            <img id="modal-image" alt="">
+            <button id="modal-close" type="button">Close</button>
+        </section>
+    </div>
+    <script>
+        const homePage = document.getElementById('home-page');
+        const textPage = document.getElementById('text-page');
+        const search = document.getElementById('search');
+        const entriesContainer = document.getElementById('entries');
+        const loadError = document.getElementById('load-error');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalName = document.getElementById('modal-name');
+        const modalDescription = document.getElementById('modal-description');
+        const modalImage = document.getElementById('modal-image');
+        let biographies = [];
+        let pageContent = {};
+
+        function renderEntries() {
+            const query = search.value.trim().toLocaleLowerCase();
+            entriesContainer.replaceChildren();
+
+            biographies
+                .filter((biography) => biography.name.toLocaleLowerCase().includes(query))
+                .forEach((biography) => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'entry';
+                    button.addEventListener('click', () => openBiography(biography));
+
+                    const image = document.createElement('img');
+                    image.src = biography.image;
+                    image.alt = biography.imageAlt || biography.name;
+
+                    const name = document.createElement('span');
+                    name.textContent = biography.name;
+
+                    button.append(image, name);
+                    entriesContainer.append(button);
+                });
+        }
+
+        function openBiography(biography) {
+            modalName.textContent = biography.name;
+            modalDescription.textContent = biography.description;
+            modalImage.src = biography.image;
+            modalImage.alt = biography.imageAlt || biography.name;
+            modalBackdrop.hidden = false;
+            document.getElementById('modal-close').focus();
+        }
+
+        function closeBiography() {
+            modalBackdrop.hidden = true;
+        }
+
+        function showPage(page) {
+            const isHome = page === 'home';
+            homePage.hidden = !isHome;
+            textPage.hidden = isHome;
+
+            if (!isHome) {
+                textPage.textContent = pageContent[page] || '';
+            }
+
+            document.querySelectorAll('.topnav button').forEach((button) => {
+                const isActive = button.dataset.page === page;
+                button.classList.toggle('active', isActive);
+                if (isActive) {
+                    button.setAttribute('aria-current', 'page');
+                } else {
+                    button.removeAttribute('aria-current');
+                }
+            });
+        }
+
+        search.addEventListener('input', renderEntries);
+        document.querySelectorAll('.topnav button').forEach((button) => {
+            button.addEventListener('click', () => showPage(button.dataset.page));
+        });
+        document.getElementById('modal-close').addEventListener('click', closeBiography);
+        modalBackdrop.addEventListener('click', (event) => {
+            if (event.target === modalBackdrop) {
+                closeBiography();
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !modalBackdrop.hidden) {
+                closeBiography();
+            }
+        });
+
+        fetch('biographies.json')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Could not load biographies.json (${response.status})`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (!Array.isArray(data.biographies) || typeof data.about !== 'string' || typeof data.credits !== 'string') {
+                    throw new Error('biographies.json must include biographies, about, and credits');
+                }
+                biographies = data.biographies;
+                pageContent = { about: data.about, credits: data.credits };
+                renderEntries();
+            })
+            .catch((error) => {
+                loadError.hidden = false;
+                loadError.textContent = `Unable to load biography content: ${error.message}`;
+            });
+    </script>
+</body>
+</html>
