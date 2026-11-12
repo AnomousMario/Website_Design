@@ -13,6 +13,9 @@
             background: #000;
             color: #fff;
             font-family: 'New Super Mario Font U', sans-serif;
+            display:flex;
+            flex-direction:column;
+            grid-template-rows: auto 1fr auto;
         }
 
         h1 {
@@ -71,6 +74,20 @@
             color: inherit;
             font: inherit;
             cursor: pointer;
+            animation: appear ease-out both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 25%;
+        }
+
+        @keyframes appear {
+        from {
+            opacity: 0;
+            transform: scale(0.5) translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
         }
 
         .entry img {
@@ -116,6 +133,9 @@
             place-items: center;
             padding: 16px;
             background: rgb(0 0 0 / 80%);
+            opacity:0;
+            visibility:hidden;
+            transition:opacity .3s ease, visibility .3s ease;
         }
 
         .modal {
@@ -126,6 +146,17 @@
             padding: 24px;
             background: #fff;
             color: #000;
+            transform: scale(.95);
+            transition: transform .3s ease;
+        }
+
+        .modal-backdrop.is-open{
+            opacity:1;
+            visibility: visible;
+        }
+
+        .modal-backdrop.is-open .modal{
+            transform:scale(1);
         }
 
         .modal h2 {
@@ -166,10 +197,14 @@
                 font-size: 15px;
             }
         }
+
+        footer{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
-    <h1>Clover's RPG Biography</h1>
+    <h1 style="font-size:60px">Clover's RPG Biography</h1>
 
     <nav class="topnav" aria-label="Main navigation">
         <button type="button" class="active" data-page="home" aria-current="page">Home</button>
@@ -187,7 +222,7 @@
         <section id="text-page" class="text-page" hidden></section>
     </main>
 
-    <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <div id="modal-backdrop" class="modal-backdrop">
         <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
             <h2 id="modal-name"></h2>
             <p id="modal-description"></p>
@@ -195,6 +230,7 @@
             <button id="modal-close" type="button">Close</button>
         </section>
     </div>
+    <footer>Test Footer</footer>
     <script>
         const homePage = document.getElementById('home-page');
         const textPage = document.getElementById('text-page');
@@ -237,12 +273,12 @@
             modalDescription.textContent = biography.description;
             modalImage.src = biography.image;
             modalImage.alt = biography.imageAlt || biography.name;
-            modalBackdrop.hidden = false;
+            modalBackdrop.classList.add('is-open');
             document.getElementById('modal-close').focus();
         }
 
         function closeBiography() {
-            modalBackdrop.hidden = true;
+            modalBackdrop.classList.remove('is-open');
         }
 
         function showPage(page) {

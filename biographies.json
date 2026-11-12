@@ -25,10 +25,10 @@
       "imageAlt": "Luigi"
     },
     {
-      "name": "Deadpool",
-      "description": "This is Deadpool and he is about as goofy as he can ever be.",
-      "image": "https://numpaint.com/wp-content/uploads/2020/08/Funny-deadpool-adult-paint-by-numbers.jpg",
-      "imageAlt": "Deadpool"
+      "name": "Wario",
+      "description": "Fat, garlic-loving, stinky elf man.",
+      "image": "https://i.ebayimg.com/images/g/OFEAAeSwGb1qrxkA/s-l1600.webp",
+      "imageAlt": "Wario"
     },
     {
       "name": "Deadpool",
@@ -41,6 +41,36 @@
       "description": "This is Deadpool and he is about as goofy as he can ever be.",
       "image": "https://numpaint.com/wp-content/uploads/2020/08/Funny-deadpool-adult-paint-by-numbers.jpg",
       "imageAlt": "Deadpool"
+    },
+    {
+      "name": "Wario",
+      "description": "Fat, garlic-loving, stinky elf man.",
+      "image": "https://i.ebayimg.com/images/g/OFEAAeSwGb1qrxkA/s-l1600.webp",
+      "imageAlt": "Wario"
+    },
+    {
+      "name": "Deadpool",
+      "description": "This is Deadpool and he is about as goofy as he can ever be.",
+      "image": "https://numpaint.com/wp-content/uploads/2020/08/Funny-deadpool-adult-paint-by-numbers.jpg",
+      "imageAlt": "Deadpool"
+    },
+    {
+      "name": "Deadpool",
+      "description": "This is Deadpool and he is about as goofy as he can ever be.",
+      "image": "https://numpaint.com/wp-content/uploads/2020/08/Funny-deadpool-adult-paint-by-numbers.jpg",
+      "imageAlt": "Deadpool"
+    },
+    {
+      "name": "Firey",
+      "description": "Firey, a burning hot piece of flame with limbs.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAFycaI1G0V6qePOA0uooxh35AiHVqi8VxpYkwp2xGNuuYjABqQAkQGjF5&s=10",
+      "imageAlt": "Firey"
+    },
+    {
+      "name": "Luigi",
+      "description": "Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi Luigi.",
+      "image": "https://i.ebayimg.com/images/g/uasAAOSwvRBnDp1~/s-l1600.webp",
+      "imageAlt": "Luigi"
     }
   ],
   "about": "about screen test",

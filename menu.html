@@ -152,22 +152,22 @@
         padding:30px;
         background-color:#fff;
         }
-        .button-theme{
-        background-color:red;
-        border:none;
-        color:black;
-        padding:15px 32px;
-        text-align:center;
-        text-decoration:none;
-        display:inline-block;
-        font-size:16px;
-        cursor:pointer;
-        }
+        .button-theme {
+		background-color: red;
+		border: none;
+		color: black;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+		}
         .button-container{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-		transition: transform .3s ease;
+		display: block;
+		width: fit-content;
+		margin: 20px auto;
         }
         .modal__content-image{
         width:100%;
@@ -237,8 +237,8 @@
             </select>
             </div>
 			<input type="checkbox" id="click" style="display:none"/>
-			<label class="button" for="click">
-			<a class="button-theme button-container mario-text" style="margin: 20px 420px; color:white; font-size:30px">The Mario Stuff</a>
+			<label class="button-container" for="click">
+			<div class="button-theme  mario-text" style="color:white; font-size:30px">The Mario Stuff</div>
 			</label>
 			<div class="modal mario-text">
 				<div class="modal__content" style="color:black;">
@@ -246,8 +246,8 @@
 					<p>This is a Kellytoy Mario laying down in peace. We do not know why he is just laying down on the ground like this.
 					</p>
 					<image class=" modal__content-image click-image" src="https://i.ebayimg.com/images/g/bcMAAeSwWfhqtZI8/s-l1600.webp"></image>
-					<label for="click" class="button">
-						<a class="button-theme button-container">Close</a>
+					<label class="button-theme button-container" for="click" class="button">
+					Close
 					</label>
 				</div>
 			</div>
