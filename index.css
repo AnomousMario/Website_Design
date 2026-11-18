@@ -15,18 +15,28 @@ color:white;
 box-sizing:border-box;
 margin:0;
 background-image:url(https://i.ebayimg.com/images/g/L7kAAeSwcW9qOwSK/s-l1600.webp);
-background-size:10%;
+background-size:140px 180px;
 color:white;
 display:grid;
 place-items:center;
-animation:movingBackground 70s linear infinite;
+animation:movingBackground 10s linear infinite;
+}
+.overlay{
+background-color: rgba(0,0,0,.7);
+z-index:2;
+pointer-events:none;
+top:0;
+left:0;
+min-width:100vw;
+min-height:100vh;
+position:fixed;
 }
 @keyframes movingBackground {
     0% {
       background-position: 0 0;
     }
     100% {
-      background-position: 1000px 1000px; /* Adjust values to change direction/speed */
+      background-position: 140px 180px; /* Adjust values to change direction/speed */
     }
   }
 header{
@@ -73,8 +83,16 @@ display:flex;
 justify-content:center;
 align-items:center;
 gap:8rem;
-background-color:rgba(0,0,0,.7);
-padding-top:100px;
+background-color:rgba(0,0,0);
+border-radius: 10px;
+border-style: solid;
+border-color: red;
+z-index:3;
+position:fixed;
+padding-top:10px;
+padding-bottom:10px;
+padding-left: 10px;
+padding-right: 10px;
 }
 .home .home-content h1{
 font-size:3rem;
@@ -85,7 +103,7 @@ font-size:2rem;
 font-weight:700;
 }
 .home .home-content p{
-font-size:1.5rem;
+font-size:1rem;
 }
 .home-img img{
 position:relative;
@@ -108,9 +126,25 @@ display:flex;
 justify-content:center;
 align-items:center;
 gap:8rem;
-background-color:rgba(0,0,0,.7);
-padding-top:100px;
+background-color:rgba(0,0,0);
+border-radius: 10px;
+border-style: solid;
+border-color: red;
+z-index:3;
+position:fixed;
+padding-top:10px;
+padding-bottom:10px;
+padding-left: 10px;
+padding-right: 10px;
 }
-.project-img{
-
+.project .project-content h1{
+font-size:3rem;
+font-weight:700;
+}
+.project .project-content h3{
+font-size:2rem;
+font-weight:700;
+}
+.project .project-content p{
+font-size:1rem;
 }
