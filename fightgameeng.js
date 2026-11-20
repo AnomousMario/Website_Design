@@ -1,0 +1,241 @@
+const canvas = document.querySelector('canvas'); 
+const c = canvas.getContext('2d'); 
+
+canvas.width = 1024;
+canvas.height = 576; 
+c.fillRect(0, 0, canvas.width, canvas.height);
+
+const gravity = 0.7;
+
+class Sprite { 
+    constructor({ position, velocity, color = 'red', offset = {x: 0, y: 0}}) { 
+        this.position = position;
+        this.velocity = velocity;
+        this.height = 150;
+        this.width = 50;
+        this.lastKey = null;
+        this.offset = offset;
+        this.attackBox = { 
+            position: { x: this.position.x, y: this.position.y }, 
+            offset: this.offset, 
+            width: 100, 
+            height: 50, 
+        };
+        this.color = color;
+        this.isAttacking;
+        this.health = 100;
+    } 
+
+    draw() { 
+        c.fillStyle = this.color;
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+        // Draw attack box when attacking
+        if (this.isAttacking) { 
+            c.fillStyle = 'green';
+            c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        } 
+    } 
+
+    update() { 
+        this.draw();
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+        this.attackBox.position.y = this.position.y;
+        
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+
+        // Ground and wall collision check
+        if (this.position.y + this.height + this.velocity.y >= canvas.height) { 
+            this.velocity.y = 0;
+            this.position.y = canvas.height - this.height; 
+        } else { 
+            this.velocity.y += gravity;
+        }
+		if (this.position.x + this.width + this.velocity.x >= canvas.width) {
+			this.velocity.x = 0;
+		}
+        
+        // Character collision
+	}
+
+    attack() { 
+        this.isAttacking = true;
+        setTimeout(() => { 
+            this.isAttacking = false;
+        }, 100);
+    } 
+} 
+
+const player = new Sprite({ 
+    position: { x: 50, y: 100 }, 
+    velocity: { x: 0, y: 0 }, 
+    offset: { x: 0, y: 0 } 
+});
+
+const enemy = new Sprite({ 
+    position: { x: 925, y: 100 }, 
+    velocity: { x: 0, y: 0 }, 
+    color: 'blue', 
+    offset: { x: -50, y: 0 } 
+});
+
+const keys = { 
+    a: { pressed: false }, 
+    d: { pressed: false }, 
+    ArrowRight: { pressed: false }, 
+    ArrowLeft: { pressed: false } 
+};
+
+
+function rectangularCollision({ rectangle1, rectangle2 }) { 
+    return (
+        rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x && 
+        rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width && 
+        rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.position.y && 
+        rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height && 
+        rectangle1.isAttacking
+    );
+} 
+let timer = 10
+decreaseTimer();
+animate();
+function decreaseTimer(){
+setTimeout(decreaseTimer,1000);
+if(timer>0){
+timer--;
+document.querySelector('#timer').innerHTML = timer;
+}
+}
+
+function animate() { 
+    window.requestAnimationFrame(animate);
+    c.fillStyle = 'black';
+    c.fillRect(0, 0, canvas.width, canvas.height);
+    
+    player.update();
+    enemy.update();
+    
+    player.velocity.x = 0;
+    enemy.velocity.x = 0;
+
+    // Player movement
+    if (keys.a.pressed && player.lastKey === 'a') { 
+        player.velocity.x = -5;
+    } else if (keys.d.pressed && player.lastKey === 'd') { 
+        player.velocity.x = 5;
+    } 
+
+    // Enemy movement
+    if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') { 
+        enemy.velocity.x = -5;
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') { 
+        enemy.velocity.x = 5;
+    }
+
+    function handleCharacterCollision(sprite1, sprite2) {
+        // Check if they are overlapping horizontally and vertically
+        if (
+          sprite1.position.x + sprite1.width >= sprite2.position.x &&
+          sprite1.position.x <= sprite2.position.x + sprite2.width &&
+          sprite1.position.y + sprite1.height >= sprite2.position.y &&
+          sprite1.position.y <= sprite2.position.y + sprite2.height
+        ) {
+          // Determine which side the collision happened on based on their velocities/positions
+          if (sprite1.position.x < sprite2.position.x) {
+            // Sprite1 is on the left, push them apart
+            const overlap = (sprite1.position.x + sprite1.width) - sprite2.position.x;
+            sprite1.position.x -= overlap / 2;
+            sprite2.position.x += overlap / 2;
+          } else {
+            // Sprite1 is on the right, push them apart
+            const overlap = (sprite2.position.x + sprite2.width) - sprite1.position.x;
+            sprite1.position.x += overlap / 2;
+            sprite2.position.x -= overlap / 2;
+          }
+        }
+      }
+
+    handleCharacterCollision(player,enemy);
+
+	// Wall collision
+	if(player.position.x < 0){
+		player.position.x = 0;
+	} else if (player.position.x + player.width > canvas.width) {
+		player.position.x = canvas.width - player.width;
+	}
+	
+	if(enemy.position.x < 0){
+		enemy.position.x = 0;
+	} else if (enemy.position.x + enemy.width > canvas.width) {
+		enemy.position.x = canvas.width - enemy.width;
+	}
+    // Detect collision
+    if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking){ 
+        player.isAttacking = false
+        enemy.health -= 20
+        document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+    }
+
+	if (rectangularCollision({ rectangle1: enemy, rectangle2: player })) { 
+        enemy.isAttacking = false;
+        console.log('Enemy hit Player!');
+    }
+}
+// Start the game loop
+animate();
+
+// Event Listeners
+window.addEventListener('keydown', (event) => { 
+    switch (event.key) { 
+        case 'd': 
+            keys.d.pressed = true;
+            player.lastKey = 'd';
+            break;
+        case 'a': 
+            keys.a.pressed = true;
+            player.lastKey = 'a';
+            break;
+        case 'w': 
+            if (player.position.y + player.height >= canvas.height) { // Prevents infinite mid-air jumps
+                player.velocity.y = -20;
+            }
+            break;
+        case ' ': 
+            player.attack();
+            break;
+        case 'ArrowRight': 
+            keys.ArrowRight.pressed = true;
+            enemy.lastKey = "ArrowRight";
+            break;
+        case 'ArrowLeft': 
+            keys.ArrowLeft.pressed = true;
+            enemy.lastKey = "ArrowLeft";
+            break;
+        case 'ArrowUp': 
+            if (enemy.position.y + enemy.height >= canvas.height) {
+                enemy.velocity.y = -20;
+            }
+            break;
+		case 'ArrowDown': 
+            enemy.attack();
+            break;
+    } 
+});
+
+window.addEventListener('keyup', (event) => { 
+    switch (event.key) { 
+        case 'd': 
+            keys.d.pressed = false;
+            break; 
+        case 'a': 
+            keys.a.pressed = false;
+            break; 
+        case 'ArrowRight': 
+            keys.ArrowRight.pressed = false;
+            break; 
+        case 'ArrowLeft': 
+            keys.ArrowLeft.pressed = false;
+            break; 
+    } 
+});
